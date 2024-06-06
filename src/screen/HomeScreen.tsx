@@ -166,7 +166,7 @@ const CallToAction = () => (
           className='text-black rounded-lg font-bold text-base hover:bg-red-400 hover:text-white'
           onClick={() => scrollToSection('about-section')}
         >
-          Contact us
+          Let's connect
         </Button>
       </div>
       <div className="relative h-80 w-full py-16">
