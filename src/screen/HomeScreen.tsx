@@ -163,9 +163,10 @@ const CallToAction = () => (
         <Button
           variant='outline'
           size='lg'
-          className='text-black rounded-lg font-bold text-base hover:bg-black hover:text-white'
+          className='text-black rounded-lg font-bold text-base hover:bg-red-400 hover:text-white'
+          onClick={() => scrollToSection('about-section')}
         >
-          Let's connect
+          Contact us
         </Button>
       </div>
       <div className="relative h-80 w-full py-16">
@@ -210,7 +211,7 @@ const Specializations = () => (
         </p>
       </div>
     </div>
-    <Tabs defaultValue="machine-learning" className='py-6'>
+    <Tabs defaultValue="custom-softwares" className='py-6'>
       <TabsList className="grid grid-cols-3 bg-white w-max mx-auto">
         <TabsTrigger value="machine-learning"
           className='data-[state=active]:text-jelly-bean data-[state=active]:bg-white data-[state=active]:shadow-none data-[state=active]:rounded-none data-[state=active]:border-b-[3px] data-[state=active]:border-jelly-bean text-black text-opacity-30 border-b-2 border-black border-opacity-30 rounded-none shadow-none font-bold text-base'
@@ -268,7 +269,7 @@ const Specializations = () => (
 );
 
 const PortfolioItem = ({ imgSrc, title, description, tags }: { imgSrc: string, title: string, description: string, tags: { label: string, className: string }[] }) => (
-  <Card className='rounded-xl'>
+  <Card className='rounded-xl w-[calc(50%_-_8px)]'>
     <CardHeader className='p-3'>
       <img loading="lazy" src={imgSrc} alt="portfolio item" />
     </CardHeader>
@@ -300,7 +301,7 @@ const Portfolio = () => (
       <h2 className="text-center text-5xl font-extrabold tracking-wide text-jelly-bean">
         See our portfolio
       </h2>
-      <div className="flex gap-5 justify-between">
+      <div className="flex gap-4 w-full">
         <PortfolioItem
           imgSrc="/bidding-assistant.png"
           title="Bidding assistant"
