@@ -12,11 +12,109 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs"
+import { Facebook, Instagram, Twitter } from 'lucide-react';
+
+function scrollToSection(sectionId: string) {
+  const section = document.getElementById(sectionId);
+  if (section) {
+    const yOffset = -75;
+    const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    console.log(y);
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+}
+
+
+const features = [
+  {
+    imgSrc: "/analytics-illustration.svg",
+    imgAlt: "Analytics and Forecasting Software Icon",
+    title: "Softwares for analytics and forecasting",
+    description:
+      "We provide solutions that let you beat the competition and play at top of market. Our solution analyze vast amounts of data, uncover trends, and predict future outcomes with precision. Whether optimizing inventory, forecasting market demand, or making data-driven strategic decisions, our software delivers the insights you need.",
+  },
+  {
+    imgSrc: "/digital-twins-illustration.svg",
+    imgAlt: "Digital Twins Icon",
+    title: "Digital Twins",
+    description:
+      "We develop advanced digital twins that are precise virtual replicas of your physical assets, processes, and systems. Experience real-time monitoring of assets, identify potential faults, and make better-informed decisions about maintenance and lifecycle.",
+  },
+  {
+    imgSrc: "/product-comparison-illustration.svg",
+    imgAlt: "Product Comparison Icon",
+    title: "Competitive product comparisons systems",
+    description:
+      "Our specialise in providing solutions that provide detailed analyses of competitor products with advanced teardown methodologies. Our system offers granular insights into features, performance, and pricing, branding, and marketing strategies enabling you to stay ahead of the market",
+  },
+  {
+    imgSrc: "/cmms-illustration.svg",
+    imgAlt: "CMMS Icon",
+    title: "Computerized Machine Maintenance Software",
+    description:
+      "Streamline your maintenance operations with our intelligent Computerized Machine Maintenance Software (CMMS). Designed to enhance productivity and minimize downtime, our CMMS solution automates scheduling, tracks asset health, and manages work orders with ease.",
+  },
+  {
+    imgSrc: "/data-transmission-illustration.svg",
+    imgAlt: "Sensing and Data Transmission System Icon",
+    title: "Sensing and Data Transmission System",
+    description:
+      "Stay ahead in a connected world with our state-of-the-art sensing and data transmission system. Designed for precision and reliability, our solutions provide seamless integration of sensor data into your digital infrastructure. Whether it's monitoring environmental conditions, tracking equipment health, or optimizing industrial processes, our technology ensures data accuracy and real-time communication.",
+  },
+  {
+    imgSrc: "/cv-illustration.svg",
+    imgAlt: "Computer vision models Icon",
+    title: "Computer vision models",
+    description:
+      "We provide cutting-edge computer vision solutions such as OCR, video analysis, object detection and tracking, automated quality assurance, and medical imaging technology to deliver accurate, real-time results and automation.",
+  },
+  {
+    imgSrc: "/nlp-illustration.svg",
+    imgAlt: "Natural language processing Icon",
+    title: "Natural language processing",
+    description:
+      "We leverage natural language processing techniques such as sentiment and emotion detection, chatbots and virtual assistants, spam detection, and content recommendation to drive engagement for social media and OTT platforms.",
+  },
+  {
+    imgSrc: "/ml-optimization-illustration.svg",
+    imgAlt: "Machine learning Icon",
+    title: "Machine learning algorithm optimisation",
+    description:
+      "Achieve peak accuracy with our machine learning algorithm optimization services. We fine-tune your models for maximum precision through quality training of the models, ensuring you get the most out of your AI investments.",
+  },
+  {
+    imgSrc: "/it-consultation-illustration.svg",
+    imgAlt: "IT Consultation Icon",
+    title: "IT Consultation",
+    description:
+      "Enhance your IT infrastructure with our expert consultation services. We provide tailored strategies to optimize your technology stack, ensuring maximum efficiency and security.",
+  },
+  {
+    imgSrc: "/maintainance-illustration.svg",
+    imgAlt: "Maintenance Icon",
+    title: "Maintenance",
+    description:
+      "Enhance your IT infrastructure with our expert consultation services. We provide tailored strategies to optimize your technology stack, ensuring maximum efficiency and security.",
+  },
+  {
+    imgSrc: "/r&d-illustration.svg",
+    imgAlt: "Research and Development Icon",
+    title: "Research and Development (R&D)",
+    description:
+      "Innovate with confidence through our dedicated R&D support. We collaborate with you to explore new technologies, develop cutting-edge solutions, and stay ahead in a competitive landscape.",
+  },
+];
 
 const Header = () => (
-  <header className="bg-white w-full">
-    <div className="flex items-center justify-between gap-5 max-w-5xl w-full mx-auto h-[75px] px-2">
-      <Link to='/' className="flex items-center gap-2.5">
+  <header className="bg-white w-full sticky top-0 z-20 shadow">
+    <div className="flex items-center justify-between gap-5 max-w-6xl w-full mx-auto h-[75px] px-2">
+      <Link to='/' className="flex items-center gap-2.5" onClick={() => scrollToSection('header-section')}>
         <img
           src="/logo.png"
           alt="Spect-AI logo"
@@ -26,15 +124,24 @@ const Header = () => (
       </Link>
       <div className="flex gap-8">
         <nav className="flex gap-5 my-auto">
-          <Link to='/' className='hover:text-jelly-bean'>Services</Link>
-          <Link to='/' className='hover:text-jelly-bean'>Portfolio</Link>
-          <Link to='/' className='hover:text-jelly-bean'>How we work</Link>
-          <Link to='/' className='hover:text-jelly-bean'>About us</Link>
+          <Link to='/' className='hover:text-jelly-bean'
+            onClick={() => scrollToSection('services-section')}
+          >Services</Link>
+          <Link to='/' className='hover:text-jelly-bean'
+            onClick={() => scrollToSection('portfolio-section')}
+          >Portfolio</Link>
+          <Link to='/' className='hover:text-jelly-bean'
+            onClick={() => scrollToSection('our-approach-section')}
+          >How we work</Link>
+          <Link to='/' className='hover:text-jelly-bean'
+            onClick={() => scrollToSection('about-section')}
+          >About us</Link>
         </nav>
         <Button
           variant='outline'
           size='lg'
           className='text-red-400 border-red-400 rounded-lg font-bold text-base hover:bg-red-400 hover:text-white'
+          onClick={() => scrollToSection('about-section')}
         >
           Contact us
         </Button>
@@ -45,7 +152,7 @@ const Header = () => (
 
 const CallToAction = () => (
   <section className="bg-puerto-rico w-full">
-    <div className='flex flex-col items-center gap-1 px-2 max-w-5xl w-full py-12 mx-auto'>
+    <div className='flex flex-col items-center gap-1 px-2 max-w-6xl w-full pt-12 mx-auto'>
       <h3 className="text-xl font-semibold leading-8 text-white uppercase">
         Our AI solutions excel at
       </h3>
@@ -62,7 +169,7 @@ const CallToAction = () => (
         </Button>
       </div>
       <div className="relative h-80 w-full py-16">
-        <video className="absolute object-cover w-full max-w-5xl h-[413px] rounded-[20px]" autoPlay loop muted playsInline>
+        <video className="absolute z-10 object-cover w-full max-w-6xl h-[413px] rounded-[20px]" autoPlay loop muted playsInline>
           <source src="/call-to-action.mp4" type="video/mp4" />
         </video>
       </div>
@@ -74,8 +181,18 @@ const ColorDot = ({ className }: { className: string }) => (
   <div className={cn('h-[17px] w-[17px] rounded-full', className)}></div>
 );
 
+function FeatureCard({ imgSrc, imgAlt, title, description }: { imgSrc: string; imgAlt: string; title: string; description: string }) {
+  return (
+    <article className="flex flex-col p-7 rounded-xl shadow bg-white w-[calc(50%_-_16px)]">
+      <img loading="lazy" src={imgSrc} alt={imgAlt} className="aspect-square w-[62px]" />
+      <h2 className="mt-3.5 text-xl font-bold leading-8 text-cyan-700">{title}</h2>
+      <p className="mt-4 text-sm leading-5 text-slate-950 text-opacity-30">{description}</p>
+    </article>
+  );
+}
+
 const Specializations = () => (
-  <section className="max-w-5xl w-full mx-auto px-2 mt-44">
+  <section className="max-w-6xl w-full mx-auto px-2 mt-44 pt-12" id='services-section'>
     <div className="flex gap-5">
       <div className="flex flex-col gap-3 mt-3 w-max">
         <ColorDot className="bg-[#DF6C4F]" />
@@ -93,6 +210,60 @@ const Specializations = () => (
         </p>
       </div>
     </div>
+    <Tabs defaultValue="machine-learning" className='py-6'>
+      <TabsList className="grid grid-cols-3 bg-white w-max mx-auto">
+        <TabsTrigger value="machine-learning"
+          className='data-[state=active]:text-jelly-bean data-[state=active]:bg-white data-[state=active]:shadow-none data-[state=active]:rounded-none data-[state=active]:border-b-[3px] data-[state=active]:border-jelly-bean text-black text-opacity-30 border-b-2 border-black border-opacity-30 rounded-none shadow-none font-bold text-base'
+        >Machine Learning</TabsTrigger>
+        <TabsTrigger value="custom-softwares"
+          className='data-[state=active]:text-jelly-bean data-[state=active]:bg-white data-[state=active]:shadow-none data-[state=active]:rounded-none data-[state=active]:border-b-[3px] data-[state=active]:border-jelly-bean text-black text-opacity-30 border-b-2 border-black border-opacity-30 rounded-none shadow-none font-bold text-base'
+        >Custom Softwares</TabsTrigger>
+        <TabsTrigger value="consultation-support"
+          className='data-[state=active]:text-jelly-bean data-[state=active]:bg-white data-[state=active]:shadow-none data-[state=active]:rounded-none data-[state=active]:border-b-[3px] data-[state=active]:border-jelly-bean text-black text-opacity-30 border-b-2 border-black border-opacity-30 rounded-none shadow-none font-bold text-base'
+        >Consultation & Support</TabsTrigger>
+      </TabsList>
+      <div className='py-4 pt-12'>
+        <TabsContent value="machine-learning" className='flex flex-row flex-wrap justify-center gap-8 mt-0'>
+          {
+            features.slice(5, 8).map((feature, index) => (
+              <FeatureCard
+                key={index}
+                imgSrc={feature.imgSrc}
+                imgAlt={feature.imgAlt}
+                title={feature.title}
+                description={feature.description}
+              />
+            ))
+          }
+        </TabsContent>
+        <TabsContent value="custom-softwares" className='flex flex-row flex-wrap justify-center gap-8 mt-0'>
+          {
+            features.slice(0, 5).map((feature, index) => (
+              <FeatureCard
+                key={index}
+                imgSrc={feature.imgSrc}
+                imgAlt={feature.imgAlt}
+                title={feature.title}
+                description={feature.description}
+              />
+            ))
+          }
+        </TabsContent>
+        <TabsContent value="consultation-support" className='flex flex-row flex-wrap justify-center gap-8 mt-0'>
+          {
+            features.slice(8).map((feature, index) => (
+              <FeatureCard
+                key={index}
+                imgSrc={feature.imgSrc}
+                imgAlt={feature.imgAlt}
+                title={feature.title}
+                description={feature.description}
+              />
+            ))
+          }
+        </TabsContent>
+      </div>
+    </Tabs>
   </section>
 );
 
@@ -124,14 +295,14 @@ const PortfolioItem = ({ imgSrc, title, description, tags }: { imgSrc: string, t
 );
 
 const Portfolio = () => (
-  <section className="px-2 py-16 w-full bg-[#FBFBFD]">
-    <div className="flex flex-col gap-14 w-full max-w-5xl mx-auto">
+  <section className="px-2 py-16 w-full bg-[#FBFBFD]" id='portfolio-section'>
+    <div className="flex flex-col gap-14 w-full max-w-6xl mx-auto">
       <h2 className="text-center text-5xl font-extrabold tracking-wide text-jelly-bean">
         See our portfolio
       </h2>
       <div className="flex gap-5 justify-between">
         <PortfolioItem
-          imgSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/ea80f03e54a1c8bb33b5d57a153fffb6d58e113cf4836f901b9ff0dc089695ee?apiKey=37e9b177900140c9be4212bdea99ec1b&"
+          imgSrc="/bidding-assistant.png"
           title="Bidding assistant"
           description="Smart AI assistant helping contractors in preparing winning bids"
           tags={[
@@ -140,7 +311,7 @@ const Portfolio = () => (
           ]}
         />
         <PortfolioItem
-          imgSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/2bc06ef68f79b1befab1c20e08f62fe9652451aaeabaf8e3838d20d151eed13b?apiKey=37e9b177900140c9be4212bdea99ec1b&"
+          imgSrc="/headgear.png"
           title="HeadGear"
           description="A wearable helmet all set to transform the sports, and medical industry"
           tags={[
@@ -212,8 +383,8 @@ const AccordionSection = () => (
 )
 
 const OurApproachSection = () => (
-  <section className="bg-jelly-bean w-full">
-    <div className='flex justify-between gap-4 max-w-5xl w-full mx-auto py-20 pb-12'>
+  <section className="bg-jelly-bean w-full" id='our-approach-section'>
+    <div className='flex justify-between gap-4 max-w-6xl w-full mx-auto py-20 pb-12'>
       <div className='flex flex-col max-w-md gap-8'>
         <h2 className="text-4xl font-extrabold tracking-wide text-white leading-[48px]">
           See Our Approach to Working with You
@@ -221,15 +392,15 @@ const OurApproachSection = () => (
         <AccordionSection />
       </div>
       <div className="relative w-full max-w-lg h-[460px]">
-        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/1e206ea791caeb19811c98e96626c75ec57a75420a341c7f94bb45edf9065ef5?apiKey=37e9b177900140c9be4212bdea99ec1b&" alt="" className="absolute z-10 max-w-full aspect-[1.49] w-[411px] top-0 right-0" />
-        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/363c655b7d8c39a4c62bb52814f2f52953bf51cde725c4aec09aef00de83a659?apiKey=37e9b177900140c9be4212bdea99ec1b&" alt="" className="absolute aspect-[1.43] w-[416px] bottom-0 left-0" />
+        <img src="/work-environment-1.png" alt="work culture image 1" loading='lazy' className="absolute z-10 max-w-full aspect-[1.49] w-[411px] top-0 right-0" />
+        <img src="/work-environment-2.png" alt="work culture image 2" loading='lazy' className="absolute aspect-[1.43] w-[416px] bottom-0 left-0" />
       </div>
     </div>
   </section >
 )
 
 const GetInTouchSection = () => (
-  <section className="max-w-5xl w-full mx-auto px-2 py-20">
+  <section className="max-w-6xl w-full mx-auto px-2 py-20" id='about-section'>
     <div className="flex gap-5 justify-between">
       <h2 className="text-3xl font-extrabold leading-10 text-jelly-bean w-1/3">Get in touch</h2>
       <div className="grid gap-12 text-opacity-30 text-black w-2/3">
@@ -248,11 +419,13 @@ const GetInTouchSection = () => (
 
 const Footer = () => (
   <section className="bg-jelly-bean w-full">
-    <div className="flex gap-8 w-full max-w-5xl mx-auto px-2 py-6">
+    <div className="flex gap-8 w-full max-w-6xl mx-auto px-2 py-6">
       <div className="flex flex-col w-3/12">
-        <Link to='/' className="flex items-center gap-2.5">
+        <Link to='/' className="flex items-center gap-2.5"
+          onClick={() => scrollToSection('header-section')}
+        >
           <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/438fdd7c-1185-4a45-8dcf-d2af8e1673d0?apiKey=37e9b177900140c9be4212bdea99ec1b&"
+            src="/logo-footer.png"
             alt="Spect-AI logo"
             className="h-[43px] w-[51px]"
           />
@@ -282,9 +455,15 @@ const Footer = () => (
         <div className="flex flex-col text-white gap-5">
           <h3 className="text-base font-medium leading-4">Follow us</h3>
           <div className="flex gap-2">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2798a8e477ff83a1f5d516dcc9a6e6c79f1e764ffe07b89c30b72ec65b8819df?apiKey=37e9b177900140c9be4212bdea99ec1b&" alt="Facebook" />
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/321396f3344b7950cffce5bfbe136e4b8c19b4cef208115bab67f1523d10d5a0?apiKey=37e9b177900140c9be4212bdea99ec1b&" alt="Twitter" />
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ba57d880363a7bf8bb9c6848bda2c2e3dfeb3370c6d0fc56b74ebc012bdd67da?apiKey=37e9b177900140c9be4212bdea99ec1b&" alt="Instagram" />
+            <div className="rounded-full w-6 h-6 bg-white flex justify-between items-center">
+              <Instagram className='text-black w-4 h-4 mx-auto stroke-[1.2px]' />
+            </div>
+            <div className="rounded-full w-6 h-6 bg-white flex justify-between items-center">
+              <Facebook className='text-black w-4 h-4 mx-auto stroke-[1.2px]' />
+            </div>
+            <div className="rounded-full w-6 h-6 bg-white flex justify-between items-center">
+              <Twitter className='text-black w-4 h-4 mx-auto stroke-[1.2px]' />
+            </div>
           </div>
         </div>
         <div className="flex flex-col text-white gap-5">
@@ -295,7 +474,7 @@ const Footer = () => (
     </div>
     <div className='h-16 w-full' />
     <Separator />
-    <div className="flex py-6 justify-between gap-5 px-2 text-sm text-white max-w-5xl w-full mx-auto">
+    <div className="flex py-6 justify-between gap-5 px-2 text-sm text-white max-w-6xl w-full mx-auto">
       <div className="">©{new Date().getFullYear()} All Rights Reserved</div>
       <div className="flex gap-5 justify-between">
         <a className="hover:underline">Privacy Policy</a>
@@ -309,7 +488,7 @@ const Footer = () => (
 );
 
 const HomeScreen = () => (
-  <main className="flex flex-col items-center bg-white">
+  <main className="flex flex-col items-center bg-white" id='header-section'>
     <Header />
     <CallToAction />
     <Specializations />
